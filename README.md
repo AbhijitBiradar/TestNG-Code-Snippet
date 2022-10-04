@@ -29,3 +29,34 @@ AssertNull(str1);
 String str1 = null;
 String str2 = "hello";              
 AssertNotNull(str2); 
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Hard Assert – Hard Assert throws an AssertException immediately when an assert statement fails and test suite continues with next @Test
+
+The disadvantage of Hard Assert – It marks the method as failing if the assert condition fails and the remaining statements inside the method will be aborted.
+
+Example:
+@Test
+public void hardAssert(){
+	System.out.println("hardAssert Method Was Started");
+	Assert.assertTrue(false);
+	System.out.println("hardAssert Method Was Executed");
+}
+	
+Soft Assert – Soft Assert collects errors during @Test. Soft Assert does not throw an exception when an assert fails and would continue with the next step after the assert statement.
+
+If there is any exception and you want to throw it then you need to use assertAll() method as a last statement in the @Test and test suite again continue with next @Test as it is.
+
+Example :
+@Test
+public void softAssert(){
+	SoftAssert softAssertion= new SoftAssert();
+	System.out.println("softAssert Method Was Started");
+	softAssertion.assertTrue(false);
+	System.out.println("softAssert Method Was Executed");
+	softAssertion.assertAll();
+}
+
+
