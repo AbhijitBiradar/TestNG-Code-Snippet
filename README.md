@@ -59,4 +59,120 @@ public void softAssert(){
 	softAssertion.assertAll();
 }
 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+## TestNG Annotations
+TestNG Annotation	Description
+@BeforeSuite	The @BeforeSuite annotated method will run before the execution of all the test methods in the suite.
+@AfterSuite	The @AfterSuite annotated method will run after the execution of all the test methods in the suite.
+@BeforeTest	The @BeforeTest annotated method will be executed before the execution of all the test methods of available classes belonging to that folder.
+@AfterTest	The @AfterTest annotated method will be executed after the execution of all the test methods of available classes belonging to that folder.
+@BeforeClass	The @BeforeClass annotated method will be executed before the first method of the current class is invoked.
+@AfterClass	The @AfterClass annotated method will be invoked after the execution of all the test methods of the current class.
+@BeforeMethod	The @BeforeMethod annotated method will be executed before each test method will run.
+@AfterMethod	The @AfterMethod annotated method will run after the execution of each test method.
+@BeforeGroups	The @BeforeGroups annotated method run only once for a group before the execution of all test cases belonging to that group.
+@AfterGroups	The @AfterGroups annotated method run only once for a group after the execution of all test cases belonging to that group.
+
+
+
+
+## Sample TestNG TestNG
+
+package day1;  
+import org.testng.annotations.Test;  
+  
+public class module1{  
+    @Test  
+    public void test1(){  
+        System.out.println("Hello javaTpoint!!");  
+    }  
+      
+    @Test  
+    public void test2(){  
+        System.out.println("JTP Travels");  
+    }
+}  
+
+package day1;  
+  
+import org.testng.annotations.Test;  
+  
+public class module2{  
+  @Test  
+  public void test3(){  
+      System.out.println("hindi100.com");  
+  }  
+}  
+
+
+## Sample TestNG.xml file
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">  
+<suite name="loan_department">  
+  <test name="Personal_loan">  
+    <classes>  
+      <class name="day1.module1"/>  
+      <class name="day1.module2"/>  
+    </classes>  
+  </test> <!-- Test -->  
+</suite> <!-- Suite -->
+
+
+## TestNG Parameter
+1. @Test(enabled=false)   /   @Test(enabled=true)
+2. @Test(groups= {"SmokeTest"}), @Test(groups= {"Group A","Group B"})  
+3. @Test(description="This is testcase1")  
+4. @Test(dependsOnMethods= {"WebStudentLogin"})  
+5. @Test(priority=2)  
+6. @Test(timeOut=200)  
+7. @Test(dependsOnGroups= {"security","database"})
+8. @Parameters({"a","b"})  
+
+
+## TestNG Listeners
+
+ITestListener Interface
+
+@Override  
+public void onTestStart(ITestResult result) {  
+
+}  
+  
+@Override  
+public void onTestSuccess(ITestResult result) {  
+
+System.out.println("Success of test cases and its details are : "+result.getName());  
+}  
+  
+@Override  
+public void onTestFailure(ITestResult result) {  
+ 
+System.out.println("Failure of test cases and its details are : "+result.getName());  
+}  
+  
+@Override  
+public void onTestSkipped(ITestResult result) {  
+
+System.out.println("Skip of test cases and its details are : "+result.getName());  
+}  
+  
+@Override  
+public void onTestFailedButWithinSuccessPercentage(ITestResult result) {  
+  
+System.out.println("Failure of test cases and its details are : "+result.getName());  
+}  
+  
+@Override  
+public void onStart(ITestContext context) {  
+ 
+}  
+  
+@Override  
+public void onFinish(ITestContext context) {  
+
+}  
+
+
+
 
