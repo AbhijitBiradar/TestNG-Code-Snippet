@@ -128,6 +128,9 @@ public class module2{
 6. @Test(timeOut=200)  
 7. @Test(dependsOnGroups= {"security","database"})
 8. @Parameters({"a","b"})  
+9. @Test(expectedExceptions = ArithmeticException.class)
+10. @Test(threadPoolSize = 4)
+11. @Test(invocationCount = 4)
 
 
 ## TestNG Listeners
@@ -173,6 +176,200 @@ public void onFinish(ITestContext context) {
 
 }  
 
+
+
+The Workflow of TestNG is Shown Below
+
+@BeforeSuite
+	@BeforeTest
+		@BeforeClass
+			@BeforeMethod
+				@Test
+				@Test
+			@AfterMethod
+		@AfterClass
+	@AfterTest
+@AfterSuite
+
+
+
+data provider method is in same class example
+
+public class DP
+{
+    @DataProvider (name = "data-provider")
+     public Object[][] dpMethod(){
+	 return new Object[][] {{"First-Value"}, {"Second-Value"}};
+     }
+	
+    @Test (dataProvider = "data-provider")
+    public void myTest (String val) {
+        System.out.println("Passed Parameter Is : " + val);
+    }
+}
+
+data provider method is in another class example
+
+public class DataProvider {
+    @Test (dataProvider = "data-provider", dataProviderClass = DP.class)
+    public void myTest (String val) {
+      System.out.println("Current Status : " + val);
+    }
+}
+
+Multiple parameters through DataProvider
+
+public class DProvider {
+	@DataProvider (name = "data-provider")
+	public Object[][] dpMethod(){
+		return new Object[][] {{2, 3 , 5}, {5, 7, 9}};
+	}
+	
+      @Test (dataProvider = "data-provider")
+      public void myTest (int a, int b, int result) {
+	     int sum = a + b;
+	     Assert.assertEquals(result, sum);
+      }
+}
+
+DataProviders With Method As A Parameter
+
+public class DProvider {
+	@DataProvider (name = "data-provider")
+	public Object[][] dpMethod (Method m){
+		switch (m.getName()) {
+		case "Sum": 
+			return new Object[][] {{2, 3 , 5}, {5, 7, 9}};
+		case "Diff": 
+			return new Object[][] {{2, 3, -1}, {5, 7, -2}};
+		}
+		return null;
+		
+	}
+	
+	@Test (dataProvider = "data-provider")
+	 public void Sum (int a, int b, int result) {
+	      int sum = a + b;
+	      Assert.assertEquals(result, sum);
+	 }
+	  
+	@Test (dataProvider = "data-provider")
+	public void Diff (int a, int b, int result) {
+	      int diff = a - b;
+	      Assert.assertEquals(result, diff);
+	 }
+}
+
+
+TestNG Data Provider with Excel
+
+public class DataProviderWithExcel_001 {
+
+	@Test(dataProvider="Authentication")
+	public void Registration_data(String sUserName,String sPassword)throws  Exception{
+		driver.findElement(By.xpath(".//*[@id='account']/a")).click();
+
+		driver.findElement(By.id("log")).sendKeys(sUserName);
+
+		System.out.println(sUserName);
+
+		driver.findElement(By.id("pwd")).sendKeys(sPassword);
+
+		System.out.println(sPassword);
+
+		driver.findElement(By.id("login")).click();
+
+		System.out.println(" Login Successfully, now it is the time to Log Off buddy.");
+
+		driver.findElement(By.xpath(".//*[@id='account_logout']/a")).click();
+
+	}
+
+	@DataProvider
+	public Object[][] Authentication() throws Exception{
+		// Setting up the Test Data Excel file
+
+		ExcelUtils.setExcelFile("D://ToolsQA//OnlineStore//src//testData//TestData.xlsx","Sheet1");
+
+		sTestCaseName = this.toString();
+
+		// From above method we get long test case name including package and class name etc.
+
+		// The below method will refine your test case name, exactly the name use have used
+
+		sTestCaseName = ExcelUtils.getTestCaseName(this.toString());
+
+		// Fetching the Test Case row number from the Test Data Sheet
+
+		// Getting the Test Case name to get the TestCase row from the Test Data Excel sheet
+
+		iTestCaseRow = ExcelUtils.getRowContains(sTestCaseName,0);
+
+		Object[][] testObjArray = ExcelUtils.getTableArray("D://ToolsQA//OnlineStore//src//testData//TestData.xlsx","Sheet1",iTestCaseRow);
+
+			return (testObjArray);
+
+	}
+}
+
+
+
+TestNG Assert Methods
+Video Tutorials On TestNG Assert Methods
+#1) assertEquals
+#2) assertNotEquals
+#3) assertTrue
+#4) assertFalse
+#5) assertNull
+#6) assertNotNull
+
+
+Retry Failed Tests in TestNG
+
+public class RetryAnalyzer implements IRetryAnalyzer {
+
+	int counter = 0;
+	int retryLimit = 4;
+	/*
+	 * (non-Javadoc)
+	 * @see org.testng.IRetryAnalyzer#retry(org.testng.ITestResult)
+	 * 
+	 * This method decides how many times a test needs to be rerun.
+	 * TestNg will call this method every time a test fails. So we 
+	 * can put some code in here to decide when to rerun the test.
+	 * 
+	 * Note: This method will return true if a tests needs to be retried
+	 * and false it not.
+	 *
+	 */
+
+	@Override
+	public boolean retry(ITestResult result) {
+
+		if(counter < retryLimit)
+		{
+			counter++;
+			return true;
+		}
+		return false;
+	}
+}
+
+
+public class Test001 {
+
+	@Test(retryAnalyzer = Tests.RetryAnalyzer.class)
+	public void Test1()
+	{
+		Assert.assertEquals(false, true);
+	}
+
+	@Test
+	public void Test2()
+	{
+		Assert.assertEquals(false, true);
+	}
+}
 
 
 
