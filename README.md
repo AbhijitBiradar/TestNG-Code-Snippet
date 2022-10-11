@@ -1,35 +1,51 @@
-# TestNG-Code-Snippet
+# TestNG Code Snippet
 
-Q: TestNG Assert Methods
+# TestNG Assert Methods
 
-#1) assertEquals
+1. **assertEquals**
+
+```java 
 String ActualTitle = driver.getTitle();
 String ExpectedTitle = “Amazon.com: Online Shopping for Electronics, Apparel";
 Assert.assertEquals(ActualTitle, ExpectedTitle);
+```
 
+2. **assertNotEquals**
 
-#2) assertNotEquals
+```java 
 String Pincode1 = Adambakkam.getText();
 String Pincode2 = Aminijikarai.getText();       
 Assert.assertNotEquals(Pincode1, Pincode2);
+```
 
-#3) assertTrue
+3. **assertTrue**
+
+```java 
 Boolean checkButtonPresence = SignInButton.isDisplayed();    
 Assert.assertTrue(checkButtonPresence);
+```
 
-#4) assertFalse
+4. **assertFalse**
+
+```java 
 Assert.assertFalse(SignIn.isDisplayed());
+```
 
-#5) assertNull
+5. **assertNull**
+
+```java 
 String str1 = null;
 String str2 = "hello";              
-AssertNull(str1); 
+Assert.assertNull(str1); 
+```
 
-#6) assertNotNull
+6. **assertNotNull**
+
+```java 
 String str1 = null;
 String str2 = "hello";              
-AssertNotNull(str2); 
-
+Assert.assertNotNull(str2); 
+```
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -61,20 +77,40 @@ public void softAssert(){
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-## TestNG Annotations
-TestNG Annotation	Description
-@BeforeSuite	The @BeforeSuite annotated method will run before the execution of all the test methods in the suite.
-@AfterSuite	The @AfterSuite annotated method will run after the execution of all the test methods in the suite.
-@BeforeTest	The @BeforeTest annotated method will be executed before the execution of all the test methods of available classes belonging to that folder.
-@AfterTest	The @AfterTest annotated method will be executed after the execution of all the test methods of available classes belonging to that folder.
-@BeforeClass	The @BeforeClass annotated method will be executed before the first method of the current class is invoked.
-@AfterClass	The @AfterClass annotated method will be invoked after the execution of all the test methods of the current class.
-@BeforeMethod	The @BeforeMethod annotated method will be executed before each test method will run.
-@AfterMethod	The @AfterMethod annotated method will run after the execution of each test method.
-@BeforeGroups	The @BeforeGroups annotated method run only once for a group before the execution of all test cases belonging to that group.
-@AfterGroups	The @AfterGroups annotated method run only once for a group after the execution of all test cases belonging to that group.
+# TestNG Annotations
 
+```java 
+@BeforeSuite	
+	The @BeforeSuite annotated method will run before the execution of all the test methods in the suite.
+	
+@AfterSuite	
+	The @AfterSuite annotated method will run after the execution of all the test methods in the suite.
+	
+@BeforeTest	
+	The @BeforeTest annotated method will be executed before the execution of all the test methods of available classes belonging to that folder.
+	
+@AfterTest	
+	The @AfterTest annotated method will be executed after the execution of all the test methods of available classes belonging to that folder.
+	
+@BeforeClass	
+	The @BeforeClass annotated method will be executed before the first method of the current class is invoked.
+	
+@AfterClass	
+	The @AfterClass annotated method will be invoked after the execution of all the test methods of the current class.
+	
+@BeforeMethod	
+	The @BeforeMethod annotated method will be executed before each test method will run.
+	
+@AfterMethod	
+	The @AfterMethod annotated method will run after the execution of each test method.
+	
+@BeforeGroups	
+	The @BeforeGroups annotated method run only once for a group before the execution of all test cases belonging to that group.
+	
+@AfterGroups	
+	The @AfterGroups annotated method run only once for a group after the execution of all test cases belonging to that group.
 
+```
 
 
 ## Sample TestNG TestNG
