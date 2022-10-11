@@ -47,7 +47,10 @@ String str2 = "hello";
 Assert.assertNotNull(str2); 
 ```
 
----------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Hard Assert & Soft Assert
+
+```java 
 
 Hard Assert – Hard Assert throws an AssertException immediately when an assert statement fails and test suite continues with next @Test
 
@@ -75,7 +78,7 @@ public void softAssert(){
 	softAssertion.assertAll();
 }
 
----------------------------------------------------------------------------------------------------------------------------------------------------
+```
 
 # TestNG Annotations
 
@@ -113,8 +116,9 @@ public void softAssert(){
 ```
 
 
-## Sample TestNG TestNG
+# Sample TestNG TestNG
 
+```java
 package day1;  
 import org.testng.annotations.Test;  
   
@@ -141,8 +145,11 @@ public class module2{
   }  
 }  
 
+```
 
-## Sample TestNG.xml file
+# Sample TestNG.xml file
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">  
 <suite name="loan_department">  
@@ -154,8 +161,12 @@ public class module2{
   </test> <!-- Test -->  
 </suite> <!-- Suite -->
 
+.```
+
 
 ## TestNG Parameter
+
+```java 
 1. @Test(enabled=false)   /   @Test(enabled=true)
 2. @Test(groups= {"SmokeTest"}), @Test(groups= {"Group A","Group B"})  
 3. @Test(description="This is testcase1")  
@@ -168,6 +179,7 @@ public class module2{
 10. @Test(threadPoolSize = 4)
 11. @Test(invocationCount = 4)
 
+```
 
 # TestNG Listeners
 
@@ -360,18 +372,9 @@ public class DataProviderWithExcel_001 {
 
 ```
 
-TestNG Assert Methods
-Video Tutorials On TestNG Assert Methods
-#1) assertEquals
-#2) assertNotEquals
-#3) assertTrue
-#4) assertFalse
-#5) assertNull
-#6) assertNotNull
+# Retry Failed Tests in TestNG
 
-
-Retry Failed Tests in TestNG
-
+```java 
 public class RetryAnalyzer implements IRetryAnalyzer {
 
 	int counter = 0;
@@ -417,5 +420,5 @@ public class Test001 {
 	}
 }
 
-
+```
 
