@@ -169,10 +169,11 @@ public class module2{
 11. @Test(invocationCount = 4)
 
 
-## TestNG Listeners
+# TestNG Listeners
 
-ITestListener Interface
+1. **ITestListener Interface**
 
+```java 
 @Override  
 public void onTestStart(ITestResult result) {  
 
@@ -212,10 +213,11 @@ public void onFinish(ITestContext context) {
 
 }  
 
+```
 
+# The Workflow of TestNG is Shown Below
 
-The Workflow of TestNG is Shown Below
-
+```java 
 @BeforeSuite
 	@BeforeTest
 		@BeforeClass
@@ -227,6 +229,7 @@ The Workflow of TestNG is Shown Below
 	@AfterTest
 @AfterSuite
 
+```
 
 
 data provider method is in same class example
