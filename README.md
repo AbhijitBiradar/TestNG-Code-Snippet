@@ -181,26 +181,22 @@ public void onTestStart(ITestResult result) {
   
 @Override  
 public void onTestSuccess(ITestResult result) {  
-
-System.out.println("Success of test cases and its details are : "+result.getName());  
+	System.out.println("Success of test cases and its details are : "+result.getName());  
 }  
   
 @Override  
-public void onTestFailure(ITestResult result) {  
- 
-System.out.println("Failure of test cases and its details are : "+result.getName());  
+public void onTestFailure(ITestResult result) {   
+	System.out.println("Failure of test cases and its details are : "+result.getName());  
 }  
   
 @Override  
 public void onTestSkipped(ITestResult result) {  
-
-System.out.println("Skip of test cases and its details are : "+result.getName());  
+	System.out.println("Skip of test cases and its details are : "+result.getName());  
 }  
   
 @Override  
 public void onTestFailedButWithinSuccessPercentage(ITestResult result) {  
-  
-System.out.println("Failure of test cases and its details are : "+result.getName());  
+	System.out.println("Failure of test cases and its details are : "+result.getName());  
 }  
   
 @Override  
@@ -231,9 +227,11 @@ public void onFinish(ITestContext context) {
 
 ```
 
+# Data Driven testing
 
-data provider method is in same class example
+1. **data provider method is in same class example**
 
+```java 
 public class DP
 {
     @DataProvider (name = "data-provider")
@@ -247,17 +245,22 @@ public class DP
     }
 }
 
+
 data provider method is in another class example
 
+```java 
 public class DataProvider {
     @Test (dataProvider = "data-provider", dataProviderClass = DP.class)
     public void myTest (String val) {
-      System.out.println("Current Status : " + val);
+    	System.out.println("Current Status : " + val);
     }
 }
 
+```
+
 Multiple parameters through DataProvider
 
+```java 
 public class DProvider {
 	@DataProvider (name = "data-provider")
 	public Object[][] dpMethod(){
@@ -271,8 +274,11 @@ public class DProvider {
       }
 }
 
+```
+
 DataProviders With Method As A Parameter
 
+```java 
 public class DProvider {
 	@DataProvider (name = "data-provider")
 	public Object[][] dpMethod (Method m){
@@ -299,9 +305,11 @@ public class DProvider {
 	 }
 }
 
+```
 
 TestNG Data Provider with Excel
 
+```java 
 public class DataProviderWithExcel_001 {
 
 	@Test(dataProvider="Authentication")
@@ -325,8 +333,7 @@ public class DataProviderWithExcel_001 {
 	}
 
 	@DataProvider
-	public Object[][] Authentication() throws Exception{
-		// Setting up the Test Data Excel file
+	public Object[][] Authentication() throws Exception{		
 
 		ExcelUtils.setExcelFile("D://ToolsQA//OnlineStore//src//testData//TestData.xlsx","Sheet1");
 
@@ -346,12 +353,12 @@ public class DataProviderWithExcel_001 {
 
 		Object[][] testObjArray = ExcelUtils.getTableArray("D://ToolsQA//OnlineStore//src//testData//TestData.xlsx","Sheet1",iTestCaseRow);
 
-			return (testObjArray);
+		return (testObjArray);
 
 	}
 }
 
-
+```
 
 TestNG Assert Methods
 Video Tutorials On TestNG Assert Methods
