@@ -57,6 +57,7 @@ Hard Assert – Hard Assert throws an AssertException immediately when an assert
 The disadvantage of Hard Assert – It marks the method as failing if the assert condition fails and the remaining statements inside the method will be aborted.
 
 Example:
+
 @Test
 public void hardAssert(){
 	System.out.println("hardAssert Method Was Started");
@@ -69,6 +70,7 @@ Soft Assert – Soft Assert collects errors during @Test. Soft Assert does not t
 If there is any exception and you want to throw it then you need to use assertAll() method as a last statement in the @Test and test suite again continue with next @Test as it is.
 
 Example :
+
 @Test
 public void softAssert(){
 	SoftAssert softAssertion= new SoftAssert();
@@ -161,10 +163,10 @@ public class module2{
   </test> <!-- Test -->  
 </suite> <!-- Suite -->
 
-.```
+```
 
 
-## TestNG Parameter
+# TestNG Parameter
 
 ```java 
 1. @Test(enabled=false)   /   @Test(enabled=true)
@@ -244,8 +246,7 @@ public void onFinish(ITestContext context) {
 1. **data provider method is in same class example**
 
 ```java 
-public class DP
-{
+public class DP{
     @DataProvider (name = "data-provider")
      public Object[][] dpMethod(){
 	 return new Object[][] {{"First-Value"}, {"Second-Value"}};
@@ -378,19 +379,7 @@ public class DataProviderWithExcel_001 {
 public class RetryAnalyzer implements IRetryAnalyzer {
 
 	int counter = 0;
-	int retryLimit = 4;
-	/*
-	 * (non-Javadoc)
-	 * @see org.testng.IRetryAnalyzer#retry(org.testng.ITestResult)
-	 * 
-	 * This method decides how many times a test needs to be rerun.
-	 * TestNg will call this method every time a test fails. So we 
-	 * can put some code in here to decide when to rerun the test.
-	 * 
-	 * Note: This method will return true if a tests needs to be retried
-	 * and false it not.
-	 *
-	 */
+	int retryLimit = 4;	
 
 	@Override
 	public boolean retry(ITestResult result) {
@@ -408,14 +397,12 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 public class Test001 {
 
 	@Test(retryAnalyzer = Tests.RetryAnalyzer.class)
-	public void Test1()
-	{
+	public void Test1(){
 		Assert.assertEquals(false, true);
 	}
 
 	@Test
-	public void Test2()
-	{
+	public void Test2(){
 		Assert.assertEquals(false, true);
 	}
 }
